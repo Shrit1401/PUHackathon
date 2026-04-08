@@ -32,6 +32,7 @@ ResQNet+ connects the full emergency journey end-to-end:
 - **Trigger channels:** Mobile app, smartwatch trigger, NFC card, WhatsApp bot
 - **Core flow:** Incident creation, profile lookup, responder assignment, live updates
 - **Guidance layer:** Immediate first-aid support and AI-assisted suggestions
+- **Intelligence feed:** Situation updates scraped from news portals and channels
 
 ---
 
@@ -103,10 +104,12 @@ flowchart TD
     G --> H[Supabase Database]
     G --> I[Supabase Realtime Events]
     G --> J[Guidance + AI Layer]
+    G --> O[News/Channel Intelligence Feed]
 
     H --> K[Incident Created]
     I --> L[Dashboard Updated]
     I --> M[Responder Assigned]
+    O --> L
     M --> N[Live Tracking for User]
 ```
 
