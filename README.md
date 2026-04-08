@@ -1,4 +1,4 @@
-# ResQNet+
+# ResQNet
 
 > **A unified, multi-channel emergency response platform across mobile, web dashboard, wearable trigger, NFC, and WhatsApp.**
 
@@ -133,16 +133,20 @@ flowchart LR
 
 ---
 
-## 8) Database Model (Core)
+## 8) Database Model (API-Aligned Core)
 
 ```mermaid
 erDiagram
     USERS {
         uuid id
+        string email
+        string phone
+        string role
         string name
         string blood_group
         string allergies
-        string contacts
+        string emergency_contact
+        datetime created_at
     }
 
     INCIDENTS {
@@ -150,19 +154,106 @@ erDiagram
         uuid user_id
         string type
         string status
-        string location
+        string source
+        float latitude
+        float longitude
+        uuid responder_id
         datetime created_at
     }
 
     RESPONDERS {
         uuid id
+        string name
         string type
-        string location
+        float latitude
+        float longitude
         string availability
     }
 
+    REPORTS {
+        uuid id
+        uuid event_id
+        uuid user_id
+        string source
+        string disaster_type
+        float latitude
+        float longitude
+        int people_count
+        bool injuries
+        float weather_severity
+        datetime created_at
+    }
+
+    EVENTS {
+        uuid id
+        string type
+        float confidence
+        string severity
+        bool active
+        float latitude
+        float longitude
+        datetime created_at
+    }
+
+    GRID_RISK {
+        uuid id
+        float grid_lat
+        float grid_lng
+        float risk_score
+        datetime updated_at
+    }
+
+    PREDICTIONS {
+        uuid id
+        uuid event_id
+        string warning
+        float confidence
+        string severity
+        float latitude
+        float longitude
+        datetime generated_at
+    }
+
+    EXTERNAL_SIGNALS {
+        uuid id
+        string source
+        string disaster_type
+        float severity_score
+        float latitude
+        float longitude
+        datetime ingested_at
+    }
+
+    MEDIA_FILES {
+        uuid id
+        uuid report_id
+        uuid user_id
+        string disaster_type
+        string file_name
+        string file_url
+        float latitude
+        float longitude
+        datetime created_at
+    }
+
+    NEWS_ARTICLES {
+        uuid id
+        string title
+        string source
+        string url
+        string disaster_type
+        datetime published_at
+        datetime scraped_at
+    }
+
     USERS ||--o{ INCIDENTS : creates
-    RESPONDERS o{--o{ INCIDENTS : assigned_to
+    USERS ||--o{ REPORTS : submits
+    USERS ||--o{ MEDIA_FILES : uploads
+    RESPONDERS ||--o{ INCIDENTS : assigned_to
+    EVENTS ||--o{ REPORTS : aggregates
+    EVENTS ||--o{ PREDICTIONS : drives
+    REPORTS ||--o{ MEDIA_FILES : evidence
+    EXTERNAL_SIGNALS o{--o| EVENTS : contributes_to
 ```
 
 ---
