@@ -1,4 +1,4 @@
-# ResQNet
+# ResQNet+
 
 > **A unified, multi-channel emergency response platform across mobile, web dashboard, wearable trigger, NFC, and WhatsApp.**
 
@@ -76,13 +76,13 @@ ResQNet+ connects the full emergency journey end-to-end:
 
 ## 5) Why It Matters
 
-| Existing Gap | ResQNet+ Response |
-|---|---|
-| Slow reporting | One-action emergency trigger |
-| Missing medical info | Profile with blood group, allergies, contacts |
-| No shared visibility | Real-time incident and assignment updates |
-| Platform dependency | Multi-channel access (app, wearable, NFC, WhatsApp) |
-| Weak responder coordination | Dashboard-based orchestration |
+| Existing Gap                | ResQNet+ Response                                   |
+| --------------------------- | --------------------------------------------------- |
+| Slow reporting              | One-action emergency trigger                        |
+| Missing medical info        | Profile with blood group, allergies, contacts       |
+| No shared visibility        | Real-time incident and assignment updates           |
+| Platform dependency         | Multi-channel access (app, wearable, NFC, WhatsApp) |
+| Weak responder coordination | Dashboard-based orchestration                       |
 
 ---
 
@@ -261,6 +261,7 @@ erDiagram
 ## 9) API Snapshot
 
 ### Create SOS
+
 ```http
 POST /sos
 Content-Type: application/json
@@ -273,11 +274,13 @@ Content-Type: application/json
 ```
 
 ### Nearby Responders
+
 ```http
 GET /responders/nearby
 ```
 
 ### Update Incident Status
+
 ```http
 PATCH /incident/:id
 Content-Type: application/json
@@ -288,6 +291,7 @@ Content-Type: application/json
 ```
 
 ### Chat Support
+
 ```http
 POST /chat
 Content-Type: application/json
@@ -301,17 +305,17 @@ Content-Type: application/json
 
 ## 10) Technology Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js |
-| Backend | Next.js API / Express |
-| Database | Supabase |
-| Authentication | Supabase Auth |
-| Realtime | Supabase Subscriptions |
-| AI | OpenAI |
-| Messaging | Twilio WhatsApp |
-| Maps & Weather Context | OpenWeather |
-| Hosting | Vercel / Render |
+| Layer                  | Technology             |
+| ---------------------- | ---------------------- |
+| Frontend               | Next.js                |
+| Backend                | Next.js API / Express  |
+| Database               | Supabase               |
+| Authentication         | Supabase Auth          |
+| Realtime               | Supabase Subscriptions |
+| AI                     | OpenAI                 |
+| Messaging              | Twilio WhatsApp        |
+| Maps & Weather Context | OpenWeather            |
+| Hosting                | Vercel / Render        |
 
 ---
 
@@ -330,25 +334,7 @@ flowchart TD
 
 ---
 
-## 12) Real vs Simulated (Transparency)
-
-### Real Components
-
-- SOS UI and incident creation
-- Supabase data storage and retrieval
-- Real-time dashboard updates
-- User emergency profile handling
-- Guided first-aid content
-
-### Simulated Components
-
-- Smartwatch biometric trigger events
-- NFC behavior when physical hardware is unavailable
-- Some movement paths/analytics values used for storytelling
-
----
-
-## 13) Future Scope
+## 12) Future Scope
 
 - Hospital-side responder dashboard
 - Government disaster-management integrations
@@ -359,12 +345,6 @@ flowchart TD
 
 ---
 
-## 14) One-Line Pitch
-
-> **ResQNet+ makes emergency response connected, real-time, and accessible from any channel.**
-
----
-
-## 15) Closing
+## 14) Closing
 
 In an emergency, help should be one action away, and the system behind that action should already know what to do next.
