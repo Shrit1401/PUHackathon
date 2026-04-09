@@ -192,8 +192,8 @@ export default function LandingPage() {
               {/* Download button */}
               <div className="mt-8">
                 <a
-                  href="/app.apk"
-                  download="app.apk"
+                  href="/api/download/apk"
+                  download="ResQNet.apk"
                   className="group inline-flex items-center gap-3 rounded-2xl border border-[#3ddc84]/20 bg-[#3ddc84]/[0.07] px-5 py-3 transition-all duration-150 hover:border-[#3ddc84]/35 hover:bg-[#3ddc84]/[0.12] hover:-translate-y-px"
                 >
                   {/* Google Play / Android icon */}
