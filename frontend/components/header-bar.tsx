@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Brain, RefreshCw } from "lucide-react";
+import { Brain, RefreshCw, ScanLine } from "lucide-react";
 import { Button } from "./ui/button";
 
 type HeaderBarProps = {
@@ -18,6 +18,7 @@ export function HeaderBar({ onRefresh }: HeaderBarProps) {
     { href: "/incidents", label: "Incidents" },
     { href: "/responders", label: "Responders" },
     { href: "/map", label: "Map" },
+    { href: "/nfc", label: "NFC" },
     { href: "/ai-insights", label: "AI Insights" },
   ];
 
@@ -55,7 +56,10 @@ export function HeaderBar({ onRefresh }: HeaderBarProps) {
         <div className="hidden h-5 w-px bg-white/[0.08] lg:block" />
         <nav className="hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => {
-            const active = pathname === item.href;
+            const active =
+              item.href === "/nfc"
+                ? pathname.startsWith("/nfc")
+                : pathname === item.href;
             return (
               <Link
                 key={item.href}
@@ -69,6 +73,12 @@ export function HeaderBar({ onRefresh }: HeaderBarProps) {
               >
                 {item.href === "/ai-insights" ? (
                   <Brain
+                    className={`h-3 w-3 shrink-0 ${active ? "text-cyan-300" : "text-white/35 group-hover:text-white/55"}`}
+                    aria-hidden
+                  />
+                ) : null}
+                {item.href === "/nfc" ? (
+                  <ScanLine
                     className={`h-3 w-3 shrink-0 ${active ? "text-cyan-300" : "text-white/35 group-hover:text-white/55"}`}
                     aria-hidden
                   />
