@@ -325,6 +325,155 @@ body {
   }
 }
 
+/* NFC hub + scan list — GPU-friendly motion (transform / opacity only) */
+@keyframes nfc-field-breathe {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.04);
+  }
+}
+
+.nfc-field-ring {
+  animation: nfc-field-breathe 5.5s var(--ease-in-out-strong, ease-in-out)
+    infinite;
+  will-change: transform, opacity;
+}
+
+.nfc-field-ring--lag {
+  animation-delay: -1.8s;
+}
+
+.nfc-field-ring--lag2 {
+  animation-delay: -3.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nfc-field-ring,
+  .nfc-field-ring--lag,
+  .nfc-field-ring--lag2 {
+    animation: none;
+    opacity: 0.5;
+    transform: none;
+  }
+}
+
+.nfc-scan-card {
+  transition:
+    transform 200ms var(--ease-out-strong),
+    border-color 200ms var(--ease-out-strong),
+    box-shadow 220ms var(--ease-out-strong),
+    background-color 200ms var(--ease-out-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nfc-scan-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.22);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 18px 48px -20px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.nfc-scan-card:active {
+  transform: translateY(0) scale(0.997);
+  transition-duration: 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nfc-scan-card {
+    transition-duration: 0ms;
+  }
+
+  .nfc-scan-card:hover {
+    transform: none;
+  }
+
+  .nfc-scan-card:active {
+    transform: none;
+  }
+}
+
+/* Public emergency profile — calm glass panels, hover gated for fine pointers */
+.profile-panel {
+  transition:
+    transform 200ms var(--ease-out-strong),
+    border-color 200ms var(--ease-out-strong),
+    box-shadow 220ms var(--ease-out-strong),
+    background-color 200ms var(--ease-out-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .profile-panel:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 22px 56px -22px rgba(0, 0, 0, 0.62);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-panel {
+    transition-duration: 0ms;
+  }
+
+  .profile-panel:hover {
+    transform: none;
+  }
+}
+
+.nfc-input {
+  transition:
+    border-color 180ms var(--ease-out-strong),
+    box-shadow 180ms var(--ease-out-strong),
+    background-color 180ms var(--ease-out-strong);
+}
+
+.nfc-input:focus-visible {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+}
+
+.nfc-press {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    background-color 160ms var(--ease-out-strong),
+    border-color 160ms var(--ease-out-strong),
+    color 160ms var(--ease-out-strong);
+}
+
+.nfc-press:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nfc-press:active {
+    transform: none;
+  }
+}
+
+.lp-reveal-nfc {
+  opacity: 0;
+  transform: translateY(12px) scale(0.988);
+  animation: lpReveal 520ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-reveal-nfc {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes motionReveal {
   to {
     opacity: 1;
