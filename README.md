@@ -1,14 +1,14 @@
 # ResQNet+
 
-> **A unified, multi-channel emergency response platform across mobile, web dashboard, wearable trigger, NFC, and WhatsApp.**
+> **A unified emergency and disaster-intelligence platform: web command dashboard, wearable trigger (demo), NFC, and WhatsApp — with real-time signals, incidents, and responder coordination.**
 
 ---
 
 ## 1) Executive Summary
 
-**ResQNet+** helps people request emergency support faster and helps responders coordinate better.
+**ResQNet+** gives response teams a live command surface and helps everyone involved coordinate faster.
 
-Users can trigger help through multiple entry points, while incident data, location, medical context, and updates flow into one shared real-time system.
+Signals and requests can arrive through the web dashboard, wearable demo, NFC, or WhatsApp; incident data, location, medical context, and updates stay in one shared real-time system.
 
 ---
 
@@ -29,7 +29,8 @@ This leads to delayed decisions, slower response, and poor visibility for both u
 
 ResQNet+ connects the full emergency journey end-to-end:
 
-- **Trigger channels:** Mobile app, smartwatch trigger, NFC card, WhatsApp bot
+- **Primary surface:** Web dashboard for live risk signals, incident validation, maps, and orchestration
+- **Trigger & access channels:** Smartwatch trigger (demo simulation), NFC emergency card, WhatsApp assistant
 - **Core flow:** Incident creation, profile lookup, responder assignment, live updates
 - **Guidance layer:** Immediate first-aid support and AI-assisted suggestions
 - **Intelligence feed:** Situation updates scraped from news portals and channels
@@ -38,19 +39,19 @@ ResQNet+ connects the full emergency journey end-to-end:
 
 ## 4) Product Modules
 
-### 4.1 Mobile App
+### 4.1 Web Command Dashboard
 
-- One-tap SOS activation
-- Emergency type selection (medical, disaster, safety)
-- Live tracking view
-- Emergency profile access
-- First-aid guidance
+- Live disaster-intelligence and risk signals
+- Incident feed, status workflow, and responder assignment
+- Map and situational monitoring
+- Real-time updates via Supabase subscriptions
+- Analytics and source breakdown for reports and external signals
 
 ### 4.2 Smartwatch Trigger (Demo Simulation)
 
 - Fall alert simulation
 - Abnormal heart-rate simulation
-- Quick SOS initiation when phone access is difficult
+- Quick SOS initiation for hands-free or wearable-first scenarios
 
 ### 4.3 NFC Emergency Card
 
@@ -64,13 +65,10 @@ ResQNet+ connects the full emergency journey end-to-end:
 - Health-related support prompts
 - Shelter/helpline oriented responses
 
-### 4.5 Admin Dashboard
+### 4.5 Intelligence & ingestion
 
-- Live incident feed
-- Incident status management
-- Responder assignment workflow
-- Map and situational monitoring
-- Response analytics
+- News and channel scraping for situation context
+- External signals, events, and grid risk modeling (where enabled)
 
 ---
 
@@ -78,10 +76,10 @@ ResQNet+ connects the full emergency journey end-to-end:
 
 | Existing Gap                | ResQNet+ Response                                   |
 | --------------------------- | --------------------------------------------------- |
-| Slow reporting              | One-action emergency trigger                        |
+| Slow reporting              | Triggers via NFC, WhatsApp, watch demo, or dashboard |
 | Missing medical info        | Profile with blood group, allergies, contacts       |
 | No shared visibility        | Real-time incident and assignment updates           |
-| Platform dependency         | Multi-channel access (app, wearable, NFC, WhatsApp) |
+| Platform dependency         | Web-first ops plus wearable demo, NFC, and WhatsApp |
 | Weak responder coordination | Dashboard-based orchestration                       |
 
 ---
@@ -90,9 +88,9 @@ ResQNet+ connects the full emergency journey end-to-end:
 
 ```mermaid
 flowchart TD
-    A[Emergency Triggered] --> B{Channel}
-    B --> C[Mobile App]
-    B --> D[Smartwatch]
+    A[Event or request] --> B{Channel}
+    B --> C[Web Dashboard]
+    B --> D[Smartwatch demo]
     B --> E[NFC]
     B --> F[WhatsApp]
 
@@ -106,11 +104,11 @@ flowchart TD
     G --> J[Guidance + AI Layer]
     G --> O[News/Channel Intelligence Feed]
 
-    H --> K[Incident Created]
-    I --> L[Dashboard Updated]
-    I --> M[Responder Assigned]
+    H --> K[Incident / report created]
+    I --> L[Dashboard updated]
+    I --> M[Responder assigned]
     O --> L
-    M --> N[Live Tracking for User]
+    M --> N[Live status for operators]
 ```
 
 ---
@@ -119,7 +117,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    U[User Channels: App, Watch, NFC, WhatsApp] --> A[Next.js / API Layer]
+    U[Channels: Web, Watch demo, NFC, WhatsApp] --> A[Next.js / API Layer]
     A --> B[Supabase Auth]
     A --> C[Supabase Database]
     A --> D[Supabase Realtime]
@@ -323,13 +321,13 @@ Content-Type: application/json
 
 ```mermaid
 flowchart TD
-    A[Open App] --> B[Press SOS]
-    B --> C[Select Emergency Type]
-    C --> D[Incident Created]
-    D --> E[Dashboard Alert]
-    E --> F[Responder Assigned]
-    F --> G[Live Tracking Starts]
-    G --> H[Incident Resolved]
+    A[Open web dashboard / trigger via NFC, WhatsApp, or watch demo] --> B[Signal or incident recorded]
+    B --> C[Operators review type and context]
+    C --> D[Incident in system]
+    D --> E[Dashboard alert and map update]
+    E --> F[Responder assigned]
+    F --> G[Live status and updates]
+    G --> H[Incident resolved]
 ```
 
 ---
